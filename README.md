@@ -9,6 +9,13 @@
   Governed memory · Live X context · Proactive initiation · Full auditability
 </p>
 
+<p align="center">
+  <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-00F0FF">
+  <img alt="License" src="https://img.shields.io/badge/license-Apache%202.0-blue">
+  <img alt="Status" src="https://img.shields.io/badge/status-core%20complete-27c93f">
+  <img alt="Python" src="https://img.shields.io/badge/python-%3E%3D3.11-blue">
+</p>
+
 ---
 
 ## Honest positioning
@@ -31,94 +38,67 @@ If you want a transparent, composable, memory-contract-based presence agent that
 
 ## What Vesper actually gives you
 
-- **Governed memory contracts** — every memory item has provenance, confidence, scope, retention, and write permissions. You control it.
-- **Explicit live X context injection** — designed to pull and use current timeline/mentions as first-class input.
-- **Proactive initiation** — can start a session when high-signal events happen (opt-in).
-- **3-agent swarm** — Coordinator + Memory-keeper + Visual Presence (transparent, not a black box).
-- **Full safety Constitution** (Articles I, III, VII) + kill switch you control.
-- **Installable & forkable** — it runs in your environment, not only inside X.
+| Capability | Detail |
+|------------|--------|
+| **Governed memory contracts** | Every memory item has provenance, confidence, scope, retention, and write permissions. You control it. |
+| **Explicit live X context** | Designed to pull and use current timeline/mentions as first-class input. |
+| **Proactive initiation** | Can start a session when high-signal events happen (opt-in, rate-limited). |
+| **3-agent swarm** | Coordinator + Memory-keeper + Visual Presence (transparent, not a black box). |
+| **Full safety Constitution** | Articles I, III, VII + kill switch you control (`VESPER_DISABLED=1`). |
+| **Installable & forkable** | Runs in your environment, not only inside X. |
 
 ---
 
-## Quick Start
+## Quick Start (friction-free)
 
-### 1. Clone the repository
+### Option A — One-command with grok-install / xlOS (recommended)
+
+```bash
+grok-install install github.com/AgentMindCloud/vesper
+# or
+xlos install github.com/AgentMindCloud/vesper
+```
+
+### Option B — Local demo (zero keys, works offline right now)
 
 ```bash
 git clone https://github.com/AgentMindCloud/vesper.git
-```
-
-This creates a folder called `vesper` in your current directory.
-
-### 2. Enter the project
-
-**Windows (PowerShell):**
-```powershell
 cd vesper
-cd agents\vesper-core
+pip install -e .
+vesper --demo
+# or
+python -m vesper.runtime --demo
 ```
 
-**macOS / Linux:**
-```bash
-cd vesper
-cd agents/vesper-core
-```
-
-### 3. Check the files
-
-**Windows:**
-```powershell
-ls .grok\
-```
-
-**macOS / Linux:**
-```bash
-ls .grok/
-```
+You will see the full flow: kill-switch check → session start → memory contracts returned → presence update → proactive policy summary.
 
 <p align="center">
-  <img src="docs/screenshots/01-clone-and-structure.svg" alt="Clone and inspect the agent structure" width="680">
+  <img src="docs/screenshots/01-clone-and-structure.svg" alt="Clone and inspect structure" width="680">
 </p>
 
-You should see these files:
+### Option C — Live configuration
 
-- `grok-swarm.yaml`
-- `memory.yaml`
-- `voice.yaml`
-- `safety.yaml`
-- `proactive.yaml`
-- `tools.yaml`
-- `prompts.yaml`
-- `permissions.yaml`
-- `deployment.yaml`
-
-### 4. Install with grok-install (recommended)
+1. Copy the example env file:
 
 ```bash
-grok-install install github.com/AgentMindCloud/vesper/agents/vesper-core
+cp .env.example .env
 ```
 
-Or if you already have xlOS:
+2. Fill real values (see comments in the file):
+
+```
+XAI_API_KEY=...
+X_BEARER_TOKEN=...
+GROK_VOICE_API_KEY=...
+```
+
+3. Validate:
 
 ```bash
-xlos install github.com/AgentMindCloud/vesper/agents/vesper-core
+vesper --check-env
 ```
 
-<p align="center">
-  <img src="docs/screenshots/02-install.svg" alt="Successful install of Vesper" width="680">
-</p>
-
-### 5. Configure secrets
-
-Create a `.env` file in the `agents/vesper-core` folder with at least:
-
-```
-XAI_API_KEY=your_key_here
-X_BEARER_TOKEN=your_token_here
-GROK_VOICE_API_KEY=your_voice_key_here
-```
-
-### 6. Run (when the runtime is available)
+4. Run via the installed runtime:
 
 ```bash
 grok-install run
@@ -126,7 +106,7 @@ grok-install run
 xlos run vesper
 ```
 
-> **Note:** Full end-to-end voice runtime still depends on the Grok multi-agent + voice endpoints being available in your environment. The YAML + Python stubs are ready; the live loop is what the runtime provides.
+> **Note:** Full end-to-end voice still depends on Grok multi-agent + voice endpoints being available in your environment. The YAML contracts + Python entrypoints + local demo are ready today.
 
 ---
 
@@ -148,21 +128,40 @@ Memory Keeper   Visual Presence
 Governed Memory Store + Proactive Policy
 ```
 
+All configuration lives in `.grok/` (swarm, memory contracts, voice latency budgets, safety, proactive triggers, tools, prompts, permissions, deployment).
+
 ---
 
-## Safety
+## Safety & Control
 
 - Profile: `standard` (real-time voice) + full Constitution (Articles I, III, VII)
-- Kill switch: `VESPER_DISABLED=1`
-- Memory is encrypted at rest. Cross-session memory is opt-in only.
+- Kill switch: `VESPER_DISABLED=1` → immediate halt of all activity
+- Memory is encrypted at rest. Cross-session memory is **opt-in only** and requires consent.
 - Every external write still requires human approval.
+- Network allowlist + rate limits + audit logging.
+
+---
+
+## Project layout
+
+```
+vesper/
+├── .grok/                 # All agent contracts (inspectable)
+├── src/vesper/            # Python runtime entrypoints + demo
+├── docs/                  # Logo + visual instructions
+├── .env.example           # Secrets template
+├── grok-install.yaml      # Install manifest
+├── pyproject.toml         # Packaging + CLI
+├── LICENSE                # Apache-2.0
+└── README.md
+```
 
 ---
 
 ## Status
 
-**Core is complete.**  
-See [STATUS.md](STATUS.md) for the full checklist of what has been implemented.
+**Core is complete and the local demo works today.**  
+See [STATUS.md](STATUS.md) for the full checklist.
 
 Built by AgentMindCloud · Independent community project.  
 Not affiliated with xAI, Grok, or X.
