@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 420" width="720" height="420">
+  <rect width="720" height="420" rx="12" fill="#0A0A0A"/>
+  <rect x="12" y="12" width="696" height="396" rx="8" fill="#111111" stroke="#1a1a1a"/>
+  <!-- traffic lights -->
+  <circle cx="36" cy="36" r="6" fill="#ff5f56"/>
+  <circle cx="56" cy="36" r="6" fill="#ffbd2e"/>
+  <circle cx="76" cy="36" r="6" fill="#27c93f"/>
+  <!-- title -->
+  <text x="360" y="40" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#555">vesper — terminal</text>
+  <!-- commands -->
+  <text x="32" y="80" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#00F0FF">$ git clone https://github.com/AgentMindCloud/vesper.git</text>
+  <text x="32" y="110" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#00F0FF">$ cd vesper/agents/vesper-core</text>
+  <text x="32" y="140" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#00F0FF">$ ls .grok/</text>
+  <!-- file list -->
+  <text x="48" y="180" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#e0e0e0">deployment.yaml</text>
+  <text x="48" y="205" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#e0e0e0">grok-swarm.yaml</text>
+  <text x="48" y="230" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#e0e0e0">memory.yaml</text>
+  <text x="48" y="255" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#e0e0e0">permissions.yaml</text>
+  <text x="48" y="280" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#e0e0e0">proactive.yaml</text>
+  <text x="48" y="305" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#e0e0e0">prompts.yaml</text>
+  <text x="48" y="330" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#e0e0e0">safety.yaml</text>
+  <text x="48" y="355" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#e0e0e0">tools.yaml</text>
+  <text x="48" y="380" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#e0e0e0">voice.yaml</text>
+  <!-- cursor -->
+  <rect x="48" y="390" width="8" height="16" fill="#00F0FF"/>
+</svg>
