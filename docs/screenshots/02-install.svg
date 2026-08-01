@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 320" width="720" height="320">
+  <rect width="720" height="320" rx="12" fill="#0A0A0A"/>
+  <rect x="12" y="12" width="696" height="296" rx="8" fill="#111111" stroke="#1a1a1a"/>
+  <circle cx="36" cy="36" r="6" fill="#ff5f56"/>
+  <circle cx="56" cy="36" r="6" fill="#ffbd2e"/>
+  <circle cx="76" cy="36" r="6" fill="#27c93f"/>
+  <text x="360" y="40" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#555">vesper — install</text>
+  <text x="32" y="90" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#00F0FF">$ grok-install install github.com/AgentMindCloud/vesper/agents/vesper-core</text>
+  <text x="32" y="140" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#27c93f">✓ Vesper installed</text>
+  <text x="32" y="170" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#27c93f">✓ Safety Constitution loaded (Articles I, III, VII)</text>
+  <text x="32" y="200" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#27c93f">✓ Memory contracts active</text>
+  <text x="32" y="230" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#27c93f">✓ Ready for voice session</text>
+  <rect x="32" y="250" width="8" height="16" fill="#00F0FF"/>
+</svg>
