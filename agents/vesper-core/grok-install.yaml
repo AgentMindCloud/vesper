@@ -4,7 +4,7 @@ version: 0.1.0
 description: >
   Next-generation voice presence agent for X. Real-time companion with
   governed memory contracts, live X context injection, optional reactive
-  visual avatar, and full xlOS + Constitution integration.
+  visual avatar, proactive initiation, and full xlOS + Constitution integration.
 category: voice-agent
 certification_target: grok-native-certified
 tagline: Presence, not just chat.
@@ -20,3 +20,11 @@ env:
 safety_profile: standard
 author: agentmindcloud
 license: Apache-2.0
+extensions:
+  runtime_dispatch:
+    type: python_module
+    module: vesper.runtime
+  constitution:
+    - I
+    - III
+    - VII
