@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" width="720" height="380">
+  <rect width="720" height="380" rx="12" fill="#0A0A0A"/>
+  <rect x="12" y="12" width="696" height="356" rx="8" fill="#111111" stroke="#1a1a1a"/>
+  <text x="360" y="42" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#00F0FF">Governed Memory Contract</text>
+  <text x="40" y="80" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#27c93f">content</text>
+  <text x="200" y="80" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#e0e0e0">"User prefers short, calm answers"</text>
+  <text x="40" y="110" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#27c93f">source</text>
+  <text x="200" y="110" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#e0e0e0">user_said</text>
+  <text x="40" y="140" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#27c93f">confidence</text>
+  <text x="200" y="140" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#e0e0e0">0.92</text>
+  <text x="40" y="170" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#27c93f">scope</text>
+  <text x="200" y="170" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#e0e0e0">user</text>
+  <text x="40" y="200" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#27c93f">retention_days</text>
+  <text x="200" y="200" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#e0e0e0">90</text>
+  <text x="40" y="230" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#27c93f">write_permission</text>
+  <text x="200" y="230" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#e0e0e0">user_only</text>
+  <text x="40" y="260" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#27c93f">created_at</text>
+  <text x="200" y="260" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#e0e0e0">2026-07-28T09:14:00Z</text>
+  <text x="40" y="290" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#27c93f">last_accessed</text>
+  <text x="200" y="290" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#e0e0e0">2026-08-01T11:53:14Z</text>
+  <text x="40" y="330" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#555">Every write is audited. Cross-session requires explicit consent.</text>
+</svg>

@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 420" width="760" height="420">
+  <rect width="760" height="420" rx="12" fill="#0A0A0A"/>
+  <rect x="12" y="12" width="736" height="396" rx="8" fill="#111111" stroke="#1a1a1a"/>
+  <text x="380" y="42" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#00F0FF">Vesper Architecture</text>
+  <!-- Input -->
+  <rect x="260" y="60" width="240" height="40" rx="6" fill="#1a1a1a" stroke="#00F0FF"/>
+  <text x="380" y="85" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#e0e0e0">User voice / X event / Proactive</text>
+  <!-- Arrow -->
+  <line x1="380" y1="100" x2="380" y2="125" stroke="#00F0FF" stroke-width="2"/>
+  <!-- Coordinator -->
+  <rect x="200" y="130" width="360" height="50" rx="6" fill="#0d2a2a" stroke="#00F0FF"/>
+  <text x="380" y="160" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#00F0FF">Coordinator (grok-4.20-multi-agent)</text>
+  <!-- Split -->
+  <line x1="380" y1="180" x2="380" y2="200" stroke="#555" stroke-width="2"/>
+  <line x1="220" y1="200" x2="540" y2="200" stroke="#555" stroke-width="2"/>
+  <line x1="220" y1="200" x2="220" y2="220" stroke="#555" stroke-width="2"/>
+  <line x1="540" y1="200" x2="540" y2="220" stroke="#555" stroke-width="2"/>
+  <!-- Memory Keeper -->
+  <rect x="80" y="225" width="280" height="50" rx="6" fill="#1a1a1a" stroke="#27c93f"/>
+  <text x="220" y="255" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#27c93f">Memory Keeper (governed contracts)</text>
+  <!-- Presence -->
+  <rect x="400" y="225" width="280" height="50" rx="6" fill="#1a1a1a" stroke="#ffbd2e"/>
+  <text x="540" y="255" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#ffbd2e">Visual Presence (Imagine avatar)</text>
+  <!-- Store -->
+  <rect x="180" y="310" width="400" height="50" rx="6" fill="#1a1a1a" stroke="#e0e0e0"/>
+  <text x="380" y="340" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="12" fill="#e0e0e0">Governed Memory Store + Proactive Policy + Safety</text>
+  <!-- Lines down -->
+  <line x1="220" y1="275" x2="220" y2="310" stroke="#555" stroke-width="1"/>
+  <line x1="540" y1="275" x2="540" y2="310" stroke="#555" stroke-width="1"/>
+  <line x1="220" y1="310" x2="540" y2="310" stroke="#555" stroke-width="1"/>
+</svg>

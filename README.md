@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-0.1.0-00F0FF">
+  <img alt="Version" src="https://img.shields.io/badge/version-0.1.1-00F0FF">
   <img alt="License" src="https://img.shields.io/badge/license-Apache%202.0-blue">
   <img alt="Status" src="https://img.shields.io/badge/status-core%20complete-27c93f">
   <img alt="Python" src="https://img.shields.io/badge/python-%3E%3D3.11-blue">
@@ -64,7 +64,7 @@ xlos install github.com/AgentMindCloud/vesper
 ```bash
 git clone https://github.com/AgentMindCloud/vesper.git
 cd vesper
-pip install -e .
+pip install -e ".[dev]"
 vesper --demo
 # or
 python -m vesper.runtime --demo
@@ -87,9 +87,9 @@ cp .env.example .env
 2. Fill real values (see comments in the file):
 
 ```
-XAI_API_KEY=...
-X_BEARER_TOKEN=...
-GROK_VOICE_API_KEY=...
+XAI_API_KEY=...          # from console.x.ai
+X_BEARER_TOKEN=...       # from developer.x.com → App → Keys and tokens
+GROK_VOICE_API_KEY=...   # same as XAI_API_KEY
 ```
 
 3. Validate:
@@ -106,29 +106,41 @@ grok-install run
 xlos run vesper
 ```
 
-> **Note:** Full end-to-end voice still depends on Grok multi-agent + voice endpoints being available in your environment. The YAML contracts + Python entrypoints + local demo are ready today.
+> **Note:** Full end-to-end voice still depends on Grok multi-agent + voice endpoints being available in your environment. The YAML contracts + Python entrypoints + local demo + memory store are ready today.
 
 ---
 
 ## Architecture
 
-```
-User voice / X event / Proactive trigger
-                ↓
-┌───────────────────────────┐
-│  Coordinator Agent        │  ← real-time + live X context injection
-│  (grok-4.20-multi-agent)  │
-└──────────┬────────────────┘
-           │
-     ┌─────┴─────┐
-     ↓           ↓
-Memory Keeper   Visual Presence
-(governed)      (Imagine avatar)
-     ↓
-Governed Memory Store + Proactive Policy
+```mermaid
+flowchart TD
+    A[User voice / X event / Proactive trigger] --> B[Coordinator Agent]
+    B --> C[Memory Keeper]
+    B --> D[Visual Presence]
+    C --> E[Governed Memory Store]
+    D --> E
+    E --> F[Proactive Policy + Safety Constitution]
 ```
 
+<p align="center">
+  <img src="docs/screenshots/03-architecture.svg" alt="Vesper architecture" width="680">
+</p>
+
 All configuration lives in `.grok/` (swarm, memory contracts, voice latency budgets, safety, proactive triggers, tools, prompts, permissions, deployment).
+
+---
+
+## Governed Memory Contracts
+
+Every fact is a validated contract:
+
+<p align="center">
+  <img src="docs/screenshots/04-memory-contract.svg" alt="Memory contract fields" width="680">
+</p>
+
+- Cross-session memory is **off by default** and requires explicit user consent.
+- Every write / query / revoke is audited.
+- See `examples/sample_memory_contracts.json` for ready-to-load examples.
 
 ---
 
@@ -136,7 +148,7 @@ All configuration lives in `.grok/` (swarm, memory contracts, voice latency budg
 
 - Profile: `standard` (real-time voice) + full Constitution (Articles I, III, VII)
 - Kill switch: `VESPER_DISABLED=1` → immediate halt of all activity
-- Memory is encrypted at rest. Cross-session memory is **opt-in only** and requires consent.
+- Memory is designed for encryption at rest. Cross-session memory is **opt-in only**.
 - Every external write still requires human approval.
 - Network allowlist + rate limits + audit logging.
 
@@ -147,7 +159,9 @@ All configuration lives in `.grok/` (swarm, memory contracts, voice latency budg
 ```
 vesper/
 ├── .grok/                 # All agent contracts (inspectable)
-├── src/vesper/            # Python runtime entrypoints + demo
+├── src/vesper/            # Runtime + memory store
+├── examples/              # Sample memory contracts
+├── tests/                 # Unit tests
 ├── docs/                  # Logo + visual instructions
 ├── .env.example           # Secrets template
 ├── grok-install.yaml      # Install manifest
@@ -158,9 +172,19 @@ vesper/
 
 ---
 
+## Development
+
+```bash
+pip install -e ".[dev]"
+pytest -q
+vesper --demo
+```
+
+---
+
 ## Status
 
-**Core is complete and the local demo works today.**  
+**Core + memory store + tests are complete.**  
 See [STATUS.md](STATUS.md) for the full checklist.
 
 Built by AgentMindCloud · Independent community project.  
