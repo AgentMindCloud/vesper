@@ -1,0 +1,22 @@
+spec: grok-install/v2.14
+name: vesper
+version: 0.1.0
+description: >
+  Next-generation voice presence agent for X. Real-time companion with
+  governed memory contracts, live X context injection, optional reactive
+  visual avatar, and full xlOS + Constitution integration.
+category: voice-agent
+certification_target: grok-native-certified
+tagline: Presence, not just chat.
+entrypoint: .grok/grok-swarm.yaml
+runtime:
+  python: ">=3.11"
+  grok: "4.20-multi-agent"
+env:
+  - XAI_API_KEY
+  - X_BEARER_TOKEN
+  - X_OAUTH_TOKEN
+  - GROK_VOICE_API_KEY
+safety_profile: standard
+author: agentmindcloud
+license: Apache-2.0
