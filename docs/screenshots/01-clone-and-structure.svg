@@ -9,7 +9,7 @@
   <text x="360" y="40" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="13" fill="#555">vesper — terminal</text>
   <!-- commands -->
   <text x="32" y="80" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#00F0FF">$ git clone https://github.com/AgentMindCloud/vesper.git</text>
-  <text x="32" y="110" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#00F0FF">$ cd vesper/agents/vesper-core</text>
+  <text x="32" y="110" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#00F0FF">$ cd vesper</text>
   <text x="32" y="140" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="15" fill="#00F0FF">$ ls .grok/</text>
   <!-- file list -->
   <text x="48" y="180" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="14" fill="#e0e0e0">deployment.yaml</text>
