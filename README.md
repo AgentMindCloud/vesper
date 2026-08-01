@@ -5,27 +5,38 @@
 <h1 align="center">Vesper</h1>
 
 <p align="center">
-  <strong>Next-generation voice presence agent for X</strong><br>
-  Real-time companion · Governed memory · Live X context · Reactive visual presence
-</p>
-
-<p align="center">
-  <em>Speak. It remembers with contracts. It sees the live timeline. It can appear. It can initiate.</em>
+  <strong>Builder-grade voice presence agent for X</strong><br>
+  Governed memory · Live X context · Proactive initiation · Full auditability
 </p>
 
 ---
 
-## What Vesper is
+## Honest positioning
 
-Vesper is a voice-first presence agent built on the xlOS + grok-yaml-standards stack.  
-It elevates the original voice-companion pattern into something that feels like a real presence rather than a chatbot.
+**Vesper is not a replacement for free Grok Voice on X.**
 
-- **Real-time voice** — emotion-aware TTS, barge-in, speaker diarization, strict latency budgets
-- **Governed memory** — every fact carries provenance, confidence, scope, retention, and write permissions
-- **Live X context** — silently pulls relevant recent posts/mentions into the conversation
-- **Reactive visual presence** — optional Grok Imagine avatar that updates expression & status
-- **Proactive mode** — can initiate a voice session on mention spikes or high-signal events (opt-in)
-- **Full safety Constitution** — Articles I, III, VII enforced + kill switch + rate limits
+Free Grok Voice is excellent, requires zero setup, and is better for almost all normal users.
+
+Vesper exists for a different audience:
+
+- Builders who want an agent they can **inspect, extend, and own**
+- Power users who want **governed cross-session memory** they control
+- People who want **proactive behavior** (the agent can initiate based on mention spikes etc.)
+- Anyone who wants the full safety Constitution + kill switches under their own control
+
+If you just want good voice conversations on X, use the free built-in Grok Voice.  
+If you want a transparent, composable, memory-contract-based presence agent that lives in *your* environment, Vesper is for you.
+
+---
+
+## What Vesper actually gives you
+
+- **Governed memory contracts** — every memory item has provenance, confidence, scope, retention, and write permissions. You control it.
+- **Explicit live X context injection** — designed to pull and use current timeline/mentions as first-class input.
+- **Proactive initiation** — can start a session when high-signal events happen (opt-in).
+- **3-agent swarm** — Coordinator + Memory-keeper + Visual Presence (transparent, not a black box).
+- **Full safety Constitution** (Articles I, III, VII) + kill switch you control.
+- **Installable & forkable** — it runs in your environment, not only inside X.
 
 ---
 
@@ -158,4 +169,4 @@ Not affiliated with xAI, Grok, or X.
 
 ---
 
-**Vesper.** Presence, not just chat.
+**Vesper** — for builders who want presence they can own and audit.
