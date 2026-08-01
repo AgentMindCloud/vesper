@@ -35,15 +35,33 @@ It elevates the original voice-companion pattern into something that feels like 
 
 ```bash
 git clone https://github.com/AgentMindCloud/vesper.git
-cd vesper
 ```
 
-### 2. Look at the agent
+This creates a folder called `vesper` in your current directory.
 
-The actual agent lives here:
+### 2. Enter the project
 
+**Windows (PowerShell):**
+```powershell
+cd vesper
+cd agents\vesper-core
+```
+
+**macOS / Linux:**
 ```bash
+cd vesper
 cd agents/vesper-core
+```
+
+### 3. Check the files
+
+**Windows:**
+```powershell
+ls .grok\
+```
+
+**macOS / Linux:**
+```bash
 ls .grok/
 ```
 
@@ -51,9 +69,19 @@ ls .grok/
   <img src="docs/screenshots/01-clone-and-structure.svg" alt="Clone and inspect the agent structure" width="680">
 </p>
 
-You will see all the YAML files that define the swarm, memory contracts, voice settings, safety, proactive policy, etc.
+You should see these files:
 
-### 3. Install with grok-install (recommended)
+- `grok-swarm.yaml`
+- `memory.yaml`
+- `voice.yaml`
+- `safety.yaml`
+- `proactive.yaml`
+- `tools.yaml`
+- `prompts.yaml`
+- `permissions.yaml`
+- `deployment.yaml`
+
+### 4. Install with grok-install (recommended)
 
 ```bash
 grok-install install github.com/AgentMindCloud/vesper/agents/vesper-core
@@ -69,17 +97,17 @@ xlos install github.com/AgentMindCloud/vesper/agents/vesper-core
   <img src="docs/screenshots/02-install.svg" alt="Successful install of Vesper" width="680">
 </p>
 
-### 4. Configure secrets
+### 5. Configure secrets
 
-Create a `.env` file (or copy from `.env.example` if present) with at least:
+Create a `.env` file in the `agents/vesper-core` folder with at least:
 
-```bash
+```
 XAI_API_KEY=your_key_here
 X_BEARER_TOKEN=your_token_here
 GROK_VOICE_API_KEY=your_voice_key_here
 ```
 
-### 5. Run (when the runtime is available)
+### 6. Run (when the runtime is available)
 
 ```bash
 grok-install run
