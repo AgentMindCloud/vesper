@@ -16,6 +16,8 @@ import time
 from datetime import datetime, timezone
 from typing import Any
 
+from vesper.memory import MemoryStore, get_default_store, validate_contract
+
 
 def check_kill_switch() -> None:
     """Halt immediately if the kill switch is engaged."""
@@ -49,7 +51,7 @@ def validate_env(required: list[str] | None = None) -> dict[str, str]:
             "Get keys from:\n"
             "  XAI_API_KEY        → https://console.x.ai\n"
             "  X_BEARER_TOKEN     → https://developer.x.com\n"
-            "  GROK_VOICE_API_KEY → Grok / xAI voice access\n"
+            "  GROK_VOICE_API_KEY → same as XAI_API_KEY (Grok Voice)\n"
         )
         raise EnvironmentError(msg)
     return found
@@ -57,40 +59,6 @@ def validate_env(required: list[str] | None = None) -> dict[str, str]:
 
 def _now_iso() -> str:
     return datetime.now(timezone.utc).isoformat()
-
-
-def _sample_memory_contracts(query: str) -> list[dict[str, Any]]:
-    """Return sample governed memory contracts for demo mode."""
-    # In real runtime these come from the encrypted store + memory-keeper.
-    samples = [
-        {
-            "content": "User prefers short, calm voice answers under 35 words.",
-            "source": "user_said",
-            "confidence": 0.92,
-            "scope": "user",
-            "retention_days": 90,
-            "write_permission": "user_only",
-            "created_at": "2026-07-28T09:14:00Z",
-            "last_accessed": _now_iso(),
-        },
-        {
-            "content": "Recent high-signal topic: multi-agent safety patterns on X.",
-            "source": "x_context",
-            "confidence": 0.81,
-            "scope": "session",
-            "retention_days": 0,
-            "write_permission": "agent",
-            "created_at": _now_iso(),
-            "last_accessed": _now_iso(),
-        },
-    ]
-    # Simple relevance filter for demo
-    q = query.lower()
-    if "memory" in q or "remember" in q or "prefer" in q:
-        return samples[:1]
-    if "x" in q or "mention" in q or "topic" in q:
-        return samples[1:]
-    return samples[:1]
 
 
 def start_voice_session(user_id: str, mode: str = "reactive") -> dict[str, Any]:
@@ -111,21 +79,41 @@ def handle_turn(
     session_id: str,
     transcript: str,
     x_context: list[dict] | None = None,
+    store: MemoryStore | None = None,
 ) -> dict[str, Any]:
     """Process one voice turn with optional live X context."""
     check_kill_switch()
 
-    # Memory-keeper step (simulated)
-    memories = _sample_memory_contracts(transcript)
+    mem_store = store or get_default_store()
 
-    # Coordinator response (simulated, respects 35-word constraint)
+    # Memory-keeper step — real contract query
+    memories = mem_store.query(max_records=3, text_hint=transcript)
+
+    # Optionally write a derived fact from this turn (demo behaviour)
+    if "remember" in transcript.lower() or "prefer" in transcript.lower():
+        try:
+            mem_store.write(
+                {
+                    "content": f"User stated preference in turn: {transcript[:80]}",
+                    "source": "user_said",
+                    "confidence": 0.85,
+                    "scope": "session",
+                    "retention_days": 0,
+                    "write_permission": "user_only",
+                    "created_at": _now_iso(),
+                    "last_accessed": _now_iso(),
+                }
+            )
+        except Exception:
+            pass  # never break the turn on memory write failure
+
+    # Coordinator response (respects 35-word constraint)
     response = (
         "Got it. I kept the context from earlier and stayed under the voice limit."
         if memories
         else "Understood. Ready when you are."
     )
 
-    # Presence update
     presence = {
         "expression": "attentive",
         "status": "speaking",
@@ -187,9 +175,9 @@ def run_demo() -> None:
     print(json.dumps(session, indent=2))
     print()
 
-    # 3. Simulated turn with memory + presence
-    print("→ Handling turn (transcript + simulated X context) …")
-    time.sleep(0.4)
+    # 3. Turn with real memory store
+    print("→ Handling turn (transcript + governed memory store) …")
+    time.sleep(0.3)
     turn = handle_turn(
         session_id="sess-demo-001",
         transcript="Can you remember that I like short calm answers and also what people are saying about multi-agent safety?",
@@ -204,20 +192,25 @@ def run_demo() -> None:
     print(json.dumps(presence, indent=2))
     print()
 
-    # 5. Proactive simulation note
+    # 5. Show store state
+    store = get_default_store()
+    print(f"→ Memory store size: {store.size}")
+    print(f"→ Audit log entries: {len(store.audit_log)}")
+    print()
+
+    # 6. Proactive policy note
     print("→ Proactive policy (from .grok/proactive.yaml)")
     print("  Triggers: mention_spike (≥5 in 15m), high engagement, scheduled")
     print("  Policy: max 3/day, require opt-in, 120m cooldown, announce reason")
     print()
 
-    # 6. Memory contract explanation
-    print("→ Governed memory contracts in action")
+    print("→ Governed memory contracts")
     print("  Every fact carries: content, source, confidence, scope,")
-    print("  retention_days, write_permission, timestamps.")
+    print("  retention_days, write_permission, timestamps + id.")
     print("  Cross-session memory is OFF by default and requires consent.\n")
 
     print("════════════════════════════════════════════════════════════")
-    print("  Demo complete. Core design is exercised end-to-end.")
+    print("  Demo complete. Core design + memory store exercised.")
     print("  For live voice: set keys in .env and use grok-install / xlOS.")
     print("════════════════════════════════════════════════════════════\n")
 
@@ -269,7 +262,6 @@ def main() -> None:
             sys.exit(1)
         return
 
-    # Default: show help + quick tip
     parser.print_help()
     print("\nQuick start:")
     print("  python -m vesper.runtime --demo")
