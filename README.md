@@ -1,34 +1,88 @@
-# Vesper
+<p align="center">
+  <img src="docs/logo.svg" alt="Vesper logo" width="140">
+</p>
 
-**Next-generation voice presence agent for X.**
+<h1 align="center">Vesper</h1>
 
-Real-time companion. Governed memory. Live X context. Reactive visual presence. Proactive initiation. Built on the full xlOS + grok-yaml-standards stack.
+<p align="center">
+  <strong>Next-generation voice presence agent for X</strong><br>
+  Real-time companion · Governed memory · Live X context · Reactive visual presence
+</p>
 
-> Speak. It remembers with contracts. It sees the live timeline. It can appear. It can initiate. It never ships without your approval.
+<p align="center">
+  <em>Speak. It remembers with contracts. It sees the live timeline. It can appear. It can initiate.</em>
+</p>
 
 ---
 
 ## What Vesper is
 
-Vesper elevates the original voice-companion pattern into a full presence layer:
+Vesper is a voice-first presence agent built on the xlOS + grok-yaml-standards stack.  
+It elevates the original voice-companion pattern into something that feels like a real presence rather than a chatbot.
 
-- **Real-time voice** with emotion-aware TTS, barge-in, speaker diarization, and sub-second first-audio budgets.
-- **Governed memory** — every memory item carries provenance, confidence, scope, retention rule, and write permissions. Cross-session when you allow it, fully auditable and revocable.
-- **Live X context** — every turn can silently pull relevant recent posts, mentions, or trends and weave them into the spoken response.
-- **Reactive visual presence** (optional) — Grok Imagine avatar that updates expression and status in real time.
-- **Proactive mode** — Vesper can initiate a voice session when something important happens on your timeline (mention spikes, opportunities).
-- **Full safety Constitution** — Articles I, III, VII enforced. Kill switches, rate limits, human approval on every external write.
-- **xlOS native** — installable as a first-class agent with runtime dispatch.
+- **Real-time voice** — emotion-aware TTS, barge-in, speaker diarization, strict latency budgets
+- **Governed memory** — every fact carries provenance, confidence, scope, retention, and write permissions
+- **Live X context** — silently pulls relevant recent posts/mentions into the conversation
+- **Reactive visual presence** — optional Grok Imagine avatar that updates expression & status
+- **Proactive mode** — can initiate a voice session on mention spikes or high-signal events (opt-in)
+- **Full safety Constitution** — Articles I, III, VII enforced + kill switch + rate limits
 
-## Quick start
+---
+
+## Quick Start
+
+### 1. Clone the repository
 
 ```bash
-# Once xlOS is installed
-xlos install github.com/AgentMindCloud/vesper
-
-# Or via grok-install
-grok-install install github.com/AgentMindCloud/vesper
+git clone https://github.com/AgentMindCloud/vesper.git
+cd vesper
 ```
+
+### 2. Look at the agent
+
+The actual agent lives here:
+
+```bash
+cd agents/vesper-core
+ls -la .grok/
+```
+
+You will see all the YAML files that define the swarm, memory contracts, voice settings, safety, proactive policy, etc.
+
+### 3. Install with grok-install (recommended when available)
+
+```bash
+# From the root of the repo or any machine that has grok-install
+grok-install install github.com/AgentMindCloud/vesper/agents/vesper-core
+```
+
+Or if you already have xlOS:
+
+```bash
+xlos install github.com/AgentMindCloud/vesper/agents/vesper-core
+```
+
+### 4. Configure secrets
+
+```bash
+cp .env.example .env          # if present
+# or create a .env with at least:
+# XAI_API_KEY=...
+# X_BEARER_TOKEN=...
+# GROK_VOICE_API_KEY=...
+```
+
+### 5. Run (when the runtime is available)
+
+```bash
+grok-install run
+# or
+xlos run vesper
+```
+
+> **Note:** Full end-to-end voice runtime still depends on the Grok multi-agent + voice endpoints being available in your environment. The YAML + Python stubs are ready; the live loop is what the runtime provides.
+
+---
 
 ## Architecture
 
@@ -48,20 +102,24 @@ Memory Keeper   Visual Presence
 Governed Memory Store + Proactive Policy
 ```
 
+---
+
 ## Safety
 
-- Profile: `standard` (voice real-time) + full Constitution (I, III, VII)
+- Profile: `standard` (real-time voice) + full Constitution (Articles I, III, VII)
 - Kill switch: `VESPER_DISABLED=1`
-- Memory encrypted at rest, contracts required, cross-session opt-in only
-- Every external write still requires human approval
+- Memory is encrypted at rest. Cross-session memory is opt-in only.
+- Every external write still requires human approval.
+
+---
 
 ## Status
 
-**Core complete.** All next layers (live context, avatar reactivity, proactive initiation, xlOS runtime wiring) are implemented and committed.
+**Core is complete.**  
+See [STATUS.md](STATUS.md) for the full checklist of what has been implemented.
 
-See [STATUS.md](STATUS.md) for the full checklist.
-
-Built by AgentMindCloud · Independent community project. Not affiliated with xAI, Grok, or X.
+Built by AgentMindCloud · Independent community project.  
+Not affiliated with xAI, Grok, or X.
 
 ---
 
