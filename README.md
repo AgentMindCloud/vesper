@@ -44,15 +44,18 @@ The actual agent lives here:
 
 ```bash
 cd agents/vesper-core
-ls -la .grok/
+ls .grok/
 ```
+
+<p align="center">
+  <img src="docs/screenshots/01-clone-and-structure.svg" alt="Clone and inspect the agent structure" width="680">
+</p>
 
 You will see all the YAML files that define the swarm, memory contracts, voice settings, safety, proactive policy, etc.
 
-### 3. Install with grok-install (recommended when available)
+### 3. Install with grok-install (recommended)
 
 ```bash
-# From the root of the repo or any machine that has grok-install
 grok-install install github.com/AgentMindCloud/vesper/agents/vesper-core
 ```
 
@@ -62,14 +65,18 @@ Or if you already have xlOS:
 xlos install github.com/AgentMindCloud/vesper/agents/vesper-core
 ```
 
+<p align="center">
+  <img src="docs/screenshots/02-install.svg" alt="Successful install of Vesper" width="680">
+</p>
+
 ### 4. Configure secrets
 
+Create a `.env` file (or copy from `.env.example` if present) with at least:
+
 ```bash
-cp .env.example .env          # if present
-# or create a .env with at least:
-# XAI_API_KEY=...
-# X_BEARER_TOKEN=...
-# GROK_VOICE_API_KEY=...
+XAI_API_KEY=your_key_here
+X_BEARER_TOKEN=your_token_here
+GROK_VOICE_API_KEY=your_voice_key_here
 ```
 
 ### 5. Run (when the runtime is available)
